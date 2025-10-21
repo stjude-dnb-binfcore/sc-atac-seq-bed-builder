@@ -34,6 +34,39 @@ Blacklist regions help remove artefactual signals, improving overall data qualit
 ## Integration with scATAC-seq Pipelines
 The Single Cell ATAC-seq BED Builder is a companion tool to [scEpiGenie](https://github.com/stjude-dnb-binfcore/sc-epigenie), designed to support the analysis of single-cell ATAC-seq data from 10x Genomics. Single Cell ATAC-seq BED Builder can be used independently or seamlessly integrated into the scEpiGenie workflow to generate the necessary BED files for downstream analysis.
 
+### How to Use the Repository
+
+#### Accessing the Code
+
+We recommend that users fork the `sc-atac-seq-bed-builder` repository and then clone their forked repository to their local machine. Team members should use the [stjude-dnb-binfcore](https://github.com/stjude-dnb-binfcore) account, while others can use their preferred GitHub account. We welcome collaborations, so please feel free to reach out if you're interested in being added to the `stjude-dnb-binfcore` account.
+
+1. Fork the repository
+
+Navigate to the main page of the `stjude-dnb-binfcore/sc-atac-seq-bed-builder` repository and click the "Fork" button.
+
+<img width="650" alt="how-to-fork-repo-1" src="figures/img/how-to-fork-repo-1.png">
+
+
+2. Create Your Fork
+
+You can change the name of the forked repository (optional - unless you will use it for multiple projects). Click "Create fork" to proceed.
+
+<img width="650" alt="how-to-fork-repo-2" src="figures/img/how-to-fork-repo-2.png">
+
+
+3. Enjoy your new project repo!
+
+<img width="650" alt="how-to-fork-repo-3" src="figures/img/how-to-fork-repo-3.png">
+
+
+4. Clone Your Fork
+
+Once you have created the fork, clone it to your local machine:
+
+```
+git clone https://github.com/<FORK_NAME>.git
+```
+
 ### Below is the main directory structure listing the analyses and data files used in this repository
 
 ```
