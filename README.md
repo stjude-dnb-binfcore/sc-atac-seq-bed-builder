@@ -18,8 +18,8 @@ This repository provides a simple tool for generating BED files—`blacklist.bed
 This tool will allow users to generate properly formatted and filtered BED files for any pre-built or custom 10x scATAC-seq reference genome.
 
 Input files:
-- An BED file of blacklist (excluded) regions, and
-- An GFF file of regulatory regions for your reference genome release of interest.
+- A BED file of blacklist (excluded) regions, and
+- A GFF file of regulatory regions for your reference genome release of interest.
 
 Output files:
 - blacklist.bed
