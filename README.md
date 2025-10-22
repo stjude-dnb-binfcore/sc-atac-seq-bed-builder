@@ -29,14 +29,13 @@ Output files:
 ## Why Are These BED Files Important?
 BED files for promoters, enhancers, and blacklist regions play a key role in scATAC-seq analysis:
 
-**Functional Annotation of Peaks:**
+- **Functional Annotation of Peaks:**
 
-Promoter and enhancer BED files enable annotation of ATAC-seq peaks, identifying accessible regions that correspond to key regulatory elements.
+  Promoter and enhancer BED files enable annotation of ATAC-seq peaks, identifying accessible regions that correspond to key regulatory elements.
 
-**Quality Control Metrics:**
+- **Quality Control Metrics:**
 
-Overlap with promoters and enhancers provides metrics for data quality and biological relevance.
-Blacklist regions help remove artefactual signals, improving overall data quality and interpretation.
+  Overlap with promoters and enhancers provides metrics for data quality and biological relevance. Blacklist regions help remove artefactual signals, improving overall data quality and interpretation.
 
 ## Integration with scATAC-seq Pipelines
 The Single Cell ATAC-seq BED Builder is a companion tool to [scEpiGenie](https://github.com/stjude-dnb-binfcore/sc-epigenie), designed to support the analysis of single-cell ATAC-seq data from 10x Genomics. Single Cell ATAC-seq BED Builder can be used independently or seamlessly integrated into the scEpiGenie workflow to generate the necessary BED files for downstream analysis.
