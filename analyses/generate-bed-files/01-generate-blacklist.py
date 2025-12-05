@@ -2,13 +2,17 @@
 
 """
 This script will take an input blacklist bed file and then
-(1) Check the formatting of the bed file is correct (i.e. it is not malformed)
-(2) Check that chromosomes are named correctly for the corresponding reference genome fai file
-(3) Check for chromosomes in blacklist file to exist in reference genome standard chromosomes (i.e. autosomal + sex + mitochondrial chromosomes) and filter non-standard chromosomes
-(4) Write out bed file with correct chromosome names and chromosomes filtered
+(1) Check the formatting of the bed file is correct (i.e. it is not malformed).
+(2) Check that chromosomes are named correctly for the corresponding reference genome fai file.
+(3) Check for chromosomes in blacklist file to exist in reference genome standard chromosomes (i.e. autosomal + sex + mitochondrial chromosomes) and filter non-standard chromosomes.
+(4) Write out bed file with correct chromosome names and chromosomes filtered.
 
-Based off of 10x Genomics code
-See here: https://github.com/10XGenomics/cellranger-atac/blob/main/lib/python/reference.py
+Based on 10x Genomics code:
+https://github.com/10XGenomics/cellranger-atac/blob/main/lib/python/reference.py
+
+Note:
+-This script depends on `util/bed_functions.py` being importable.
+-The underlying `sort_and_uniq_bed` implementation uses the Unix `uniq` command, this tool is intended for Linux/macOS environments. For Windows, use a Python-only deduplication implementation.
 """
 
 import sys
@@ -16,6 +20,7 @@ import os
 import argparse
 import shutil
 
+# Do not create .pyc files
 sys.dont_write_bytecode = True
 import util.bed_functions as bf
 
@@ -45,12 +50,12 @@ def file_path(string):
 parser = argparse.ArgumentParser()
 
 # Add arguments
-parser.add_argument('--bed', type=file_path, help='Input blacklist bed to use for generating blacklist reference bed file', required=True)
-parser.add_argument('--species', type=str, help='Species for the corresponding reference genome that the blacklist is being generated for, expects either mouse or human as the input', required=True)
-parser.add_argument('--outputfile', type=file_path, help='Path and filename to save the finalized bed file output to', required=True)
-parser.add_argument('--faidx', type=file_path, help='Fasta index file for corresponding reference genome', required=True)
-parser.add_argument('--copy', type=str, help='String indicating if results files should be copied', required=True)
-parser.add_argument('--copy_path', type=file_path, help='Path to copy results files to', required=False)
+parser.add_argument('--bed', type=file_path, help='Input blacklist BED file to use for generating blacklist reference BED file.', required=True)
+parser.add_argument('--species', type=str, help='Species for the reference genome (mouse or human).', required=True)
+parser.add_argument('--outputfile', type=file_path, help='Path to write the cleaned, formatted BED file output to.', required=True)
+parser.add_argument('--faidx', type=file_path, help='FASTA index file (.fai) for the corresponding reference genome.', required=True)
+parser.add_argument('--copy', type=str, help='If set to "TRUE", copy the output to --copy_path.', required=True)
+parser.add_argument('--copy_path', type=file_path, help='Destination directory or file path to copy the result to (used only if --copy is set to "TRUE").', required=False)
 
 #Convert argument strings to objects and assigns them as attributes of the namespace; e.g. --bed -> args.bed
 args = parser.parse_args()
