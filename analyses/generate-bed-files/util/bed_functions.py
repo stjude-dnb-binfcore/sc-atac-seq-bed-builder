@@ -233,8 +233,8 @@ def get_reg_elements(input_gff, faidx_file, output_path):
     enh.close()
     
     # Report counts of promoters and enhancers found in gff
-    for value, key in count.items():
-        print("    Parsed {} {} regions.".format(key, value))
+    for region, n in count.items():
+        print(f"    Parsed {n} {region} regions.")
     print("done")
 
     # Add sort and uniq for each bed file here
