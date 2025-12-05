@@ -13,7 +13,8 @@ import subprocess
 
 from pybedtools import BedTool, MalformedBedLineError
 
-###
+##################################################
+# Function to check for valid bed formatting
 def bed_format_checker(in_bed_file, faidx_file):
     """
     Given a bed file path, examine whether is it a valid bed format
@@ -63,9 +64,10 @@ def bed_format_checker(in_bed_file, faidx_file):
                 next_contig = next(contig_iter)
             except StopIteration:
                 sys.exit('Malformed BED entry at line {} in {}: contigs are not properly sorted according to the order in the reference fasta.'.format(i, in_bed_file))
-###
+##################################################
 
-###
+##################################################
+# Function to create bed iterator for checking formatting
 def bed_format_checker_iter(in_bed_file):
     """
     Take a file path of a BED/GTF/GFF file and return a generator with BedTool built-in format checker
@@ -98,9 +100,10 @@ def bed_format_checker_iter(in_bed_file):
                 sys.exit(msg + str(e))
         except StopIteration:
             break
-###
+##################################################
 
-###
+##################################################
+# Function to check and clean chromosome names to match input reference fai
 def clean_chr_name(chrom, species, keep_nonstd=False):
     """
     match the input chrom string to the standard format used in the genome.fa.fai
@@ -128,9 +131,10 @@ def clean_chr_name(chrom, species, keep_nonstd=False):
         return test_name
     else:
         return None
-###
+##################################################
 
-###
+##################################################
+# Function to run chromosome name check and save clean output
 def clean_chr_name_file(in_file, species, output_file):
     """
     given a tab-delimitated file, run clean_chr_name to clean the first column, which is the default chrom column
@@ -158,9 +162,10 @@ def clean_chr_name_file(in_file, species, output_file):
     shutil.move(tmp.name, output_file)
     tmp.close()
     print("done\n")
-###
+##################################################
 
-###
+##################################################
+# Function to count header lines in input bed/gff files
 def count_header_lines_bed(in_file):
     """ Count the number of header lines in a bed file
         Header lines are defined as lines starting with "#" in the beginning of the file
@@ -176,9 +181,11 @@ def count_header_lines_bed(in_file):
                 break
 
     return counter
-###
+##################################################
 
-###
+##################################################
+# Function to extract enhancer and promoter entries from regulator gff file and save individual output bed files for enhancers and promoters
+
 # Note: portions of the code related to other regulatory element types were (i.e. CTCF binding sites) were removed
 def get_reg_elements(input_gff, faidx_file, output_path):
 
@@ -240,9 +247,9 @@ def get_reg_elements(input_gff, faidx_file, output_path):
     # Add sort and uniq for each bed file here
     sort_and_uniq_bed(promoter_out, faidx_file, cut_cols=False)
     sort_and_uniq_bed(enhancer_out, faidx_file, cut_cols=False)
-###
+##################################################
 
-###
+##################################################
 def sort_and_uniq_bed(in_bed_file, faidx_file, cut_cols):
     """
     given a path of a bed file, sort bed file and remove duplicate rows
@@ -273,4 +280,4 @@ def sort_and_uniq_bed(in_bed_file, faidx_file, cut_cols):
 
         # clean up temporary files
         os.remove(tmp.name)
-###
+##################################################
