@@ -1,17 +1,21 @@
 #!/usr/bin/env python3
 
 """
-This script will take an input gff file of regulatory elements and then
-(1) Check the formatting of the gff file is consistent with bed formatting (i.e. it is not malformed for the bed format)
-(2) Check that chromosomes are named correctly for the corresponding reference genome fai file
-(3) Check for chromosomes in gff file to exist in reference genome standard chromosomes (i.e. autosomal + sex + mitochondrial chromosomes)
-(4) Check further that the formatting of the gff file is consistent with a bed file (including checking basic formatting, contig length, and other formatting)
-Once formatting of gff file is fully confirmed to be consistent with bed formatting and is properly sorted and duplicates are removed, then:
-(5) Separate regulatory gff into enhancer and promoter entries based on annotation in the gff file
-(6) Write out final beds file, one for promoters, one for enhancers
+This script will take an input gff file of regulatory elements and then:
+(1) Check the formatting of the gff file is consistent with BED formatting (i.e. it is not malformed for the BED format).
+(2) Check that chromosomes are named correctly for the corresponding reference genome fai file.
+(3) Check for chromosomes in gff file to exist in reference genome standard chromosomes (i.e. autosomal + sex + mitochondrial chromosomes).
+(4) Check further that the formatting of the gff file is consistent with a BED file (including checking basic formatting, contig length, and other formatting).
+Once formatting of gff file is fully confirmed to be consistent with BED formatting, is properly sorted, and duplicates are removed, then:
+(5) Separate regulatory gff into enhancer and promoter entries based on annotation in the gff file.
+(6) Write out final BED files, one for promoters, one for enhancers.
 
-Based off of 10x Genomics code
-See here: https://github.com/10XGenomics/cellranger-atac/blob/main/lib/python/reference.py
+Based on 10x Genomics code:
+https://github.com/10XGenomics/cellranger-atac/blob/main/lib/python/reference.py
+
+Note:
+-This script depends on `util/bed_functions.py` being importable.
+-The underlying `sort_and_uniq_bed` implementation uses the Unix `uniq` command, this tool is intended for Linux/macOS environments. For Windows, use a Python-only deduplication implementation.
 """
 
 import sys
@@ -19,6 +23,7 @@ import os
 import argparse
 import shutil
 
+# Do not create .pyc files
 sys.dont_write_bytecode = True
 import util.bed_functions as bf
 
@@ -57,13 +62,13 @@ def file_path(string):
 parser = argparse.ArgumentParser()
 
 # Add arguments
-parser.add_argument('--gff', type=file_path, help='Regulatory gff file to use for generating the gff file with correct chromosome naming', required=True)
-parser.add_argument('--species', type=str, help='Species for the corresponding reference genome that the enhancer and promoter bed files are being generated for, expects either mouse or human as the input', required=True)
-parser.add_argument('--outputfile', type=file_path, help='Path and filename to save the output gff file to', required=True)
-parser.add_argument('--faidx', type=file_path, help='Fasta index file for corresponding reference genome', required=True)
-parser.add_argument('--outpath', type=file_path, help='Path to save the finalized gff file output to', required=True)
-parser.add_argument('--copy', type=str, help='String indicating if results files should be copied', required=True)
-parser.add_argument('--copy_path', type=file_path, help='Path to copy results files to', required=False)
+parser.add_argument('--gff', type=file_path, help='Regulatory gff file to use for generating the gff file with correct chromosome naming.', required=True)
+parser.add_argument('--species', type=str, help='Species for the reference genome (mouse or human)', required=True)
+parser.add_argument('--outputfile', type=file_path, help='Path to write the cleaned gff file to.', required=True)
+parser.add_argument('--faidx', type=file_path, help='FASTA index file (.fai) for the corresponding reference genome.', required=True)
+parser.add_argument('--outpath', type=file_path, help='Path to write the cleaned, formatted BED file output to.', required=True)
+parser.add_argument('--copy', type=str, help='If set to "TRUE", copy the output to --copy_path.', required=True)
+parser.add_argument('--copy_path', type=file_path, help='Destination directory or file path to copy the result to (used only if --copy is set to "TRUE").', required=False)
 
 #Convert argument strings to objects and assigns them as attributes of the namespace; e.g. --gff -> args.gff
 args = parser.parse_args()
