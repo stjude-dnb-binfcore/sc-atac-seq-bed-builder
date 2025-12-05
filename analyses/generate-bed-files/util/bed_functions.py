@@ -9,9 +9,7 @@ import os
 import shutil
 import sys
 import tempfile
-import csv
 import subprocess
-import string
 
 from pybedtools import BedTool, MalformedBedLineError
 
@@ -199,9 +197,6 @@ def get_reg_elements(input_gff, faidx_file, output_path):
     # Open output files to save results to
     with open(promoter_out, 'w') as pro, open(enhancer_out, 'w') as enh:
 
-        promoter_writer = csv.writer(pro, delimiter='\t', quoting=csv.QUOTE_NONE, quotechar='')
-        enhancer_writer = csv.writer(enh, delimiter='\t', quoting=csv.QUOTE_NONE, quotechar='')
-
         # Create iterator and again check formatting of input file
         gtf_iter = bed_format_checker_iter(input_gff)
 
@@ -227,11 +222,11 @@ def get_reg_elements(input_gff, faidx_file, output_path):
 
             if test_str.endswith('Promoter'):
                 count['promoter'] += 1
-                promoter_writer.writerow(row)
+                pro.write('\t'.join(map(str, row)) + '\n')
 
             elif test_str.endswith('Enhancer'):
                 count['enhancer'] += 1
-                enhancer_writer.writerow(row)               
+                enh.write('\t'.join(map(str, row)) + '\n')               
 
     # Close files that were opened
     pro.close()
