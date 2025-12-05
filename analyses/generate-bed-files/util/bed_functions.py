@@ -184,7 +184,7 @@ def count_header_lines_bed(in_file):
 ##################################################
 
 ##################################################
-# Function to extract enhancer and promoter entries from regulator gff file and save individual output bed files for enhancers and promoters
+# Function to extract enhancer and promoter entries from regulatory gff file and save individual output bed files for enhancers and promoters
 
 # Note: portions of the code related to other regulatory element types were (i.e. CTCF binding sites) were removed
 def get_reg_elements(input_gff, faidx_file, output_path):
