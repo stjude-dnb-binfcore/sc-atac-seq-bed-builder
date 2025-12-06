@@ -9,7 +9,7 @@ The `run-generate-bed-files.sh` script is designed to run two scripts:
 
 Users can choose to run only one or both scripts.
 
-Parameters for input data files and run options should be specified in the `project_paramters.Config.yaml` file. An example `project_paramters.Config.yaml` file for the user to edit appropriately is provided here [link here].
+Parameters for input data files and run options should be specified in the `project_paramters.Config.yaml` file. An example `project_paramters.Config.yaml` file for the user to edit appropriately is provided [here](https://github.com/stjude-dnb-binfcore/sc-atac-seq-bed-builder/blob/main/project_parameters.Config.yaml).
 
 
 ### Run module by using LSF on St. Jude HPC
