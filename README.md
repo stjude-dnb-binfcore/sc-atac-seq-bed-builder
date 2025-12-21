@@ -9,9 +9,7 @@
 This repository provides a simple tool for generating BED files-`blacklist.bed`, `promoter.bed`, and `enhancer.bed`-that can be incorporated into 10x Genomics scATAC-seq reference genomes. Including these files enables Cell Ranger ATAC to calculate and report `blacklist_region_fragments`, `promoter_region_fragments`, and `enhancer_region_fragments` in the `singlecell.csv` output when aligning 10x single-cell ATAC-seq data.
 
  > - Note:
-       Recent 10x pre-built reference genomes (2020 and 2024 releases) no longer include these BED files by default, starting with [Cell Ranger ATAC 2.0](https://www.10xgenomics.com/support/software/cell-ranger-atac/latest/release-notes/release-notes#cell-ranger-atac-2-0-may-3-2021-4017ff).
-
-       For detailed explanations and step-by-step guidance, refer to this [issue](https://github.com/stjude-dnb-binfcore/sc-epigenie/issues/50).
+       Recent 10x pre-built reference genomes (2020 and 2024 releases) no longer include these BED files by default, starting with [Cell Ranger ATAC 2.0](https://www.10xgenomics.com/support/software/cell-ranger-atac/latest/release-notes/release-notes#cell-ranger-atac-2-0-may-3-2021-4017ff). For a detailed explanation and step-by-step guideance, refer to [this issue](https://github.com/stjude-dnb-binfcore/sc-epigenie/issues/50).
 
 
 ## Key Features
