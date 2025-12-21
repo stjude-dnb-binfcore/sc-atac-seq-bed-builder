@@ -4,17 +4,19 @@
 ## Usage
 
 The `run-generate-bed-files.sh` script is designed to run two scripts: 
-   - 01-generate-blacklist.py: To generate a properly formatted and filtered BED file (`blacklist.bed`) for blacklist regions for the reference genome of interest. 
-   - 02-generate-promoter-enhancer.py: To generate properly formatted BED files for enhancer and promoter regions (`enhancer.bed` and `promoter.bed`, respectively) for the reference genome of interest.
+   - `01-generate-blacklist.py`: To generate a properly formatted and filtered BED file (`blacklist.bed`) for blacklist regions for the reference genome of interest. 
+   - `02-generate-promoter-enhancer`.py: To generate properly formatted BED files for enhancer and promoter regions (`enhancer.bed` and `promoter.bed`, respectively) for the reference genome of interest.
 
-Users can choose to run only one or both scripts.
+Users can run both scripts or select to execute only one by setting the `run_blacklist_step` and `run_enhancer_promoter_step` parameters in the `project_parameters.Config.yaml` file.
 
-Parameters for input data files and run options should be specified in the `project_paramters.Config.yaml` file. An example `project_paramters.Config.yaml` file for the user to edit appropriately is provided [here](https://github.com/stjude-dnb-binfcore/sc-atac-seq-bed-builder/blob/main/project_parameters.Config.yaml).
+Output files are stored in the `./results` directory by default. To copy the output files to a specific location (such as the directory containing your reference genome), set the `copy_files` and `copy_path` parameters in the `project_parameters.Config.yaml` file.
+
+Parameters for input data files and run options should be specified in the `project_parameters.Config.yaml` file located at the `root_dir`.
 
 
 ### Run module by using LSF on St. Jude HPC
 
-To run the scripts in this module sequentially using LSF on HPC, please run the following command from an interactive compute or login node:
+To run the scripts in this module sequentially using LSF on HPC, please run the following command from an interactive compute node:
 
 ```
 bsub < lsf-script.txt
@@ -44,6 +46,7 @@ The structure of this folder is as follows:
 ```
 ├── 01-generate-blacklist.py
 ├── 02-generate-promoter-enhancer.py
+├── lsf-script.txt
 ├── README.md
 ├── results
 |   ├── blacklist.bed
