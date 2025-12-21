@@ -93,10 +93,11 @@ if [[ "$enh_promo_boolean" == "TRUE" ]]; then
        touch $outputgff
    fi
 
-# Run python script to check chromosome names
-# Note that it appears that input gff files can have entries for non-standard chromosome
-# But following the 10x workflow, only standard chromosomes are kept
-# Can explore adjusting this in the future if necessary
+   # Run python script to check chromosome names
+   # This script also checks for proper formatting of input file
+   # Note that input gff files can have entries for non-standard chromosome
+   # But following the 10x workflow, only standard chromosomes are kept
+   # Can explore adjusting this in the future if necessary
    if [ "$copy_files" == "TRUE" ]; then
       python $rootdir/analyses/generate-bed-files/02-generate-promoter-enhancer.py \
        --gff=$inputgff \
