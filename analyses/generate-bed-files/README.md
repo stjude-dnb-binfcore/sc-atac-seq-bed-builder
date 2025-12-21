@@ -5,7 +5,7 @@
 
 The `run-generate-bed-files.sh` script is designed to run two scripts: 
    - `01-generate-blacklist.py`: To generate a properly formatted and filtered BED file (`blacklist.bed`) for blacklist regions for the reference genome of interest. 
-   - `02-generate-promoter-enhancer`.py: To generate properly formatted BED files for enhancer and promoter regions (`enhancer.bed` and `promoter.bed`, respectively) for the reference genome of interest.
+   - `02-generate-promoter-enhancer.py`: To generate properly formatted BED files for enhancer and promoter regions (`enhancer.bed` and `promoter.bed`, respectively) for the reference genome of interest.
 
 Users can run both scripts or select to execute only one by setting the `run_blacklist_step` and `run_enhancer_promoter_step` parameters in the `project_parameters.Config.yaml` file.
 
