@@ -1,0 +1,13 @@
+# The following parameters are used to define the input files and run parameters for the `generate-bed-files` analysis module #
+
+faidx_file_path: "./refdata-cellranger-arc-GRCm39-2024-A/fasta/genome.fa.fai" # Absolute path to where the fasta index file (.fai) for the reference genome of interest lives, including the file name itself.
+species: "mouse" # Options: "human" or "mouse". Choose the appropriate species for your genome of interest to define the set of standard chromosomes to include in output reference bed files.
+
+run_blacklist_step: "TRUE" # Options: "TRUE" (default) or "FALSE". If set to "TRUE", output blacklist BED file will be created.
+blacklist_file_path: "./mm39.excluderanges.bed" # Absolute path where the input blacklist bed file lives, including the file name itself. Users can provide a blacklist BED file retrieved from existing reference resources or a custom blacklist BED file generated for their specific needs. Common reference genomes may have existing blacklist BED files available in databases such as ENCODE (https://www.encodeproject.org/annotations/).
+
+run_enhancer_promoter_step: "TRUE" # Options: "TRUE" (default) or "FALSE". If set to "TRUE", output enhancer and promoter BED files will be created.
+regulatory_file_path: "./mus_musculus.GRCm39.Regulatory_Build.regulatory_features.20221007.gff" # Absolute path to where the input regulatory gff file lives, including the file name itself. Users can provide a regulatory GFF file retrieved from existing reference resources or a custom GFF file generated for their specific needs. Common reference genomes may have existing regulatory GFF files available for Ensembl releases (https://ftp.ensembl.org/pub).
+
+copy_files: "FALSE" # Options: "TRUE" or "FALSE" (default). If set to "TRUE", output BED files with be copied to the path provided by `copy_path` (e.g. the path to 10x reference genome folder).
+copy_path: "./refdata-cellranger-arc-GRCm39-2024-A/regions" # Absolute path for where to copy output BED files for blacklist and/or enhancers and promoters. Only used if `copy_files` is set to "TRUE".
