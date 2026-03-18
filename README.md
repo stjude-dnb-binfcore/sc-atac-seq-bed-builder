@@ -24,6 +24,8 @@ Output files:
 - enhancer.bed
 - promoter.bed
 
+Currently, this tool supports BED file generation for human or mouse reference genomes and has been tested for the 2020 and 2024 10x pre-built reference genome releases.
+
 ## Why Are These BED Files Important?
 BED files for promoters, enhancers, and blacklist regions play a key role in scATAC-seq analysis:
 
